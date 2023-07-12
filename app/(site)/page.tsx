@@ -7,6 +7,7 @@ export default function Home() {
           flex
           min-h-full
           flex-col
+          
           justify-center
           py-12
           sm:px-6

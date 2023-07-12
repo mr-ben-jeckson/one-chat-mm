@@ -2,7 +2,8 @@
 
 import { useCallback, useState } from "react";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
-import Input from "../../components/inputs/input";
+import Input from "../../components/Inputs/Input";
+import Button from "../../components/Inputs/Button";
 
 type Variant = 'LOGIN' | 'REGISTER';
 
@@ -35,11 +36,11 @@ const AuthForm = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
 
-        if( variant == 'REGISTER') {
+        if (variant == 'REGISTER') {
             //Axios Register
         }
 
-        if( variant == 'LOGIN') {
+        if (variant == 'LOGIN') {
             //NextAuth Sign in
         }
     }
@@ -58,8 +59,8 @@ const AuthForm = () => {
                 sm:max-w-md
             "
         >
-           <div
-            className="
+            <div
+                className="
                 bg-white
                 px-4
                 py-8
@@ -67,14 +68,39 @@ const AuthForm = () => {
                 sm:rounded-lg
                 sm:px-10
             "
-           >
-            <form 
-                className="space-y-6"
-                onSubmit={handleSubmit(onSubmit)}
             >
-                <Input/>
-            </form>
-           </div>
+                <form
+                    className="space-y-6"
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    {variant == 'REGISTER' && (
+                        <Input
+                            id="name"
+                            label="Name"
+                            register={register}
+                            errors={errors}
+                        />
+                    )
+                    }
+                        <Input
+                            id="email"
+                            label="Email Address"
+                            type="Email"
+                            register={register}
+                            errors={errors}
+                        />
+                        <Input
+                            id="password"
+                            label="Password"
+                            type="password"
+                            register={register}
+                            errors={errors}
+                        />
+                        <div>
+                            <Button />
+                        </div>
+                </form>
+            </div>
         </div>
     )
 }

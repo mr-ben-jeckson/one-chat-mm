@@ -154,8 +154,24 @@ const AuthForm = () => {
                     </div>
                 </div>
 
-                <div>
-                    
+                <div className="
+                    flex
+                    gap-2
+                    justify-center
+                    text-sm
+                    mt-6
+                    px-2
+                    text-gray-500
+                ">
+                    <div>
+                        {variant === 'LOGIN' ? 'new to oneChat MM?' : 'Already has an account?'}
+                    </div>
+                    <div
+                        onClick={toggleVariant}
+                        className="underline cursor-pointer"
+                    >
+                        { variant === 'LOGIN' ? 'create an account' : 'Login'}
+                    </div>
                 </div>
 
             </div>

@@ -18,7 +18,7 @@ export async function POST(
             return new NextResponse('Missing fields', { status: 400 });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 13);
+        const hashedPassword = await bcrypt.hash(password, 12);
 
         const user = await prisma.user.create({
             data: {

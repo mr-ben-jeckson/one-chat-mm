@@ -1,8 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Comfortaa } from 'next/font/google'
+import ToasterContext from './context/toasterContext'
+import AuthContext from './context/AuthContext';
 
-const confortaa = Comfortaa({ subsets: ['latin'] })
+const comfortaa = Comfortaa({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Welcome to One Chat MM',
@@ -16,7 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={confortaa.className}>{children}</body>
+      <body className={comfortaa.className}>
+        <AuthContext>
+          <ToasterContext />
+          {children}
+        </AuthContext>
+      </body>
     </html>
   )
 }

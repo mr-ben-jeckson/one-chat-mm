@@ -3,9 +3,20 @@
 import useRoutes from "@/app/hooks/useRoutes";
 import { useState } from "react";
 import DesktopSidebarItem from "./DesktopSidebarItem";
-const LargeScreenSidebar = () => {
+import { User } from "@prisma/client";
+
+interface LargeScreenSidebarProps {
+  currentUser: User
+}
+
+const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
+  currentUser
+}) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false); 
+
+  console.log({ currentUser });
+
   return (
     <div className="
         hidden

@@ -9,7 +9,7 @@ async function Sidebar({ children }: {
     const currentUser = await getCurrentUser();
     return (
         <div className="h-full">
-            <LargeScreenSidebar currentUser={currentUser}/>
+            <LargeScreenSidebar currentUser={currentUser!}/>
             <MobileMenu />
             <main className="lg:pl-20 h-full">
                 {children}

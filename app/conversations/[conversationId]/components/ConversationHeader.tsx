@@ -1,10 +1,12 @@
 'use client';
 
+import Avatar from "@/app/components/Avatar";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { Conversation, User } from "@prisma/client";
 import Link from "next/link";
 import { useMemo } from "react";
 import { HiChevronLeft } from "react-icons/hi";
+import { HiEllipsisHorizontal } from "react-icons/hi2";
 
 interface ConversationHeaderProps {
     conversation: Conversation & {
@@ -34,7 +36,7 @@ const ConversationHeader: React.FC<ConversationHeaderProps> = ({
                 py-3
                 px-4
                 lg:px-6
-                justyify-between
+                justify-between
                 items-center
                 shadow-sm
             "
@@ -59,9 +61,34 @@ const ConversationHeader: React.FC<ConversationHeaderProps> = ({
                 >
                     <HiChevronLeft size={32} />
                 </Link>
+                <Avatar user={otherUser} />
+                <div className="flex flex-col">
+                    <div>
+                        {conversation.name || otherUser?.name}
+                    </div>
+                    <div 
+                        className="
+                            text-sm
+                            font-light
+                            text-neutral-500
+                    "
+                    >
+                        {statusText}
+                    </div>
+                </div>
             </div>
+            <HiEllipsisHorizontal 
+                size={32} 
+                onClick={() => {}}
+                className="
+                    text-red-500
+                    hover:text-red-600
+                    transition
+                    cursor-pointer
+                "
+            />
         </div>
-    )
+    );
 }
 
 export default ConversationHeader;

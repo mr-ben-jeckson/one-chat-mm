@@ -33,7 +33,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
             border-r
             border-gray-200
           `,
-        isOpen ? 'hidden' : 'block w-full left-0'
+         isOpen ? 'block w-full left-0' : 'hidden'
       )}
     >
       <div className="px-5">
@@ -62,7 +62,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
           </div>
         </div>
         {items.map((item) => (
-          <ConversationChatItem 
+          <ConversationChatItem
             key={item.id}
             data={item}
             selected={item.id === conversationId}
@@ -70,7 +70,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
         ))}
       </div>
     </aside>
-  )
+  );
 }
 
 export default ConversationList;

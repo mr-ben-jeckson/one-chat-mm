@@ -2,7 +2,7 @@
 
 import useConversation from "@/app/hooks/useConversation";
 import axios from "axios";
-import { DefaultValues, FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { HiPaperAirplane, HiPhoto } from "react-icons/hi2";
 import MessageInput from "./MessageInput";
 
@@ -19,11 +19,11 @@ const MessageForm = () => {
         }
     });
 
-    const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
-        setValue("message", "", {shouldValidate: true});
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        setValue("message", "", { shouldValidate: true });
         axios.post(`/api/messages`, {
             ...data,
-            conversationId
+            conversationId: conversationId
         });
     };
 
@@ -41,12 +41,12 @@ const MessageForm = () => {
                 w-full
             "
         >
-            <HiPhoto size={30} className="text-red-500"/>
+            <HiPhoto size={30} className="text-red-500" />
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex items-center gap-2 lg:gap-4 w-full"
             >
-                <MessageInput 
+                <MessageInput
                     id="message"
                     register={register}
                     errors={errors}
@@ -64,7 +64,7 @@ const MessageForm = () => {
                         cursor-pointer
                     "
                 >
-                    <HiPaperAirplane size={18} className="text-white"/>
+                    <HiPaperAirplane size={18} className="text-white" />
                 </button>
             </form>
         </div>

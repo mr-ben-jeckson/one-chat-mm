@@ -6,8 +6,8 @@ interface MessageBodyProps {
 
 const MessageBody = () => {
   return (
-    <div>
-      
+    <div className="h-full">
+      body!
     </div>
   )
 }

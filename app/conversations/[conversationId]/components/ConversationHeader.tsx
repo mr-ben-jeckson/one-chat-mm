@@ -4,9 +4,11 @@ import Avatar from "@/app/components/Avatar";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { Conversation, User } from "@prisma/client";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { HiChevronLeft } from "react-icons/hi";
 import { HiEllipsisHorizontal } from "react-icons/hi2";
+import ProfileDrawer from "./ProfileDrawer";
+import { set } from "date-fns";
 
 interface ConversationHeaderProps {
     conversation: Conversation & {
@@ -17,17 +19,24 @@ const ConversationHeader: React.FC<ConversationHeaderProps> = ({
     conversation
 }) => {
     const otherUser = useOtherUser(conversation);
+    const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
     const statusText = useMemo(() => {
-        if(conversation.isGroup) {
+        if (conversation.isGroup) {
             return `${conversation.users.length} members`
         }
 
         return 'Active'
     }, [conversation])
     return (
-        <div
-            className="
+        <>
+            <ProfileDrawer
+                data={conversation}
+                isOpen={isOpenDrawer}
+                onClose={() => setIsOpenDrawer(false)}
+            />
+            <div
+                className="
                 bg-white
                 w-full
                 flex
@@ -40,54 +49,55 @@ const ConversationHeader: React.FC<ConversationHeaderProps> = ({
                 items-center
                 shadow-sm
             "
-        >
-            <div
-                className="
+            >
+                <div
+                    className="
                     flex
                     gap-3
                     items-center
                 "
-            >
-                <Link
-                    className="
+                >
+                    <Link
+                        className="
                         lg:hidden
                         block
                         text-red-500
                         hover:text-red-600
                         transition
                         cursor-pointer
-                    " 
-                    href="/conversations"
-                >
-                    <HiChevronLeft size={32} />
-                </Link>
-                <Avatar user={otherUser} />
-                <div className="flex flex-col">
-                    <div>
-                        {conversation.name || otherUser?.name}
-                    </div>
-                    <div 
-                        className="
+                    "
+                        href="/conversations"
+                    >
+                        <HiChevronLeft size={32} />
+                    </Link>
+                    <Avatar user={otherUser} />
+                    <div className="flex flex-col">
+                        <div>
+                            {conversation.name || otherUser?.name}
+                        </div>
+                        <div
+                            className="
                             text-sm
                             font-light
                             text-neutral-500
                     "
-                    >
-                        {statusText}
+                        >
+                            {statusText}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <HiEllipsisHorizontal 
-                size={32} 
-                onClick={() => {}}
-                className="
+                <HiEllipsisHorizontal
+                    size={32}
+                    onClick={() => {setIsOpenDrawer(true)}}
+                    className="
                     text-red-500
                     hover:text-red-600
                     transition
                     cursor-pointer
                 "
-            />
-        </div>
+                />
+            </div>
+        </>
     );
 }
 

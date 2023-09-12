@@ -43,7 +43,16 @@ const Modal: React.FC<ModalProps> = ({
                         transition-opacity
                     "
                     />
+                </Transition.Child>
 
+                <div
+                    className="
+                    fixed
+                    inset-0
+                    z-10
+                    overflow-y-auto
+                "
+                >
                     <div
                         className="
                         flex
@@ -115,7 +124,7 @@ const Modal: React.FC<ModalProps> = ({
                                         >
                                             Close
                                         </span>
-                                        <IoClose 
+                                        <IoClose
                                             className="h-6 w-6"
                                         />
                                     </button>
@@ -124,7 +133,8 @@ const Modal: React.FC<ModalProps> = ({
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>
-                </Transition.Child>
+                </div>
+
             </Dialog>
         </Transition.Root>
     )

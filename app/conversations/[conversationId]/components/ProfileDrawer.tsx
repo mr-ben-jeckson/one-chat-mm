@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { Fragment, useMemo, useState } from "react";
 import { IoClose, IoTrash } from "react-icons/io5";
 import Modal from "@/app/components/Modal";
+import ConfirmModal from "./ConfirmModal";
 
 interface ProfileDrawerProps {
     isOpen: boolean;
@@ -37,18 +38,10 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
     }, []);
     return (
         <>
-        <Modal
+        <ConfirmModal
             isOpen={isModalOpen}
             onClose={() => setIsModelOpen(false)}
-        >
-            <div
-                className="bg-white p-5"
-            >
-                <p>
-                    test
-                </p>
-            </div>
-        </Modal>
+        />
         <Transition.Root show={isOpen} as={Fragment} >
             <Dialog as="div" className="z-50 relative" onClose={onClose}>
                 <Transition.Child
